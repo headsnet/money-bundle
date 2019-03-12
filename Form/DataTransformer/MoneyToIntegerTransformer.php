@@ -21,7 +21,7 @@ class MoneyToIntegerTransformer implements DataTransformerInterface
 {
 
 	/**
-	 * Transforms an object (money) to a string (number).
+	 * Transforms a Money object to a numeric string.
 	 *
 	 * @param  Money|null $money
 	 *
@@ -31,19 +31,19 @@ class MoneyToIntegerTransformer implements DataTransformerInterface
 	{
 		if (null === $money)
 		{
-			return '';
+			return '0';
 		}
 
 		return $money->getAmount();
 	}
 
 	/**
-	 * Transforms a string (number) to an object (money).
+	 * Transforms a numeric string to a Money object.
 	 *
 	 * @param string $moneyNumber
 	 *
 	 * @return Money|null
-	 * @throws TransformationFailedException if object (money) is not found.
+	 * @throws TransformationFailedException If Money object is not found.
 	 */
 	public function reverseTransform($moneyNumber)
 	{
