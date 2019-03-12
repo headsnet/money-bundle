@@ -53,7 +53,7 @@ Total: {{ total|money }}
 
 ## Serializer
 
-The bundle provides a Symfony normalizer for the Money type.
+The bundle provides a Symfony normalizer for the Money object.
 
 ```php
 
