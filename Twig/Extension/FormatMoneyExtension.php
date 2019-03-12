@@ -39,7 +39,7 @@ class FormatMoneyExtension extends AbstractExtension
 	{
 		$currencies = new ISOCurrencies();
 
-		$numberFormatter = new \NumberFormatter('en_US', \NumberFormatter::CURRENCY);
+		$numberFormatter = new \NumberFormatter('fr_FR', \NumberFormatter::CURRENCY);
 		$moneyFormatter = new IntlMoneyFormatter($numberFormatter, $currencies);
 
 		return $moneyFormatter->format($money);
