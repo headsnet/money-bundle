@@ -15,16 +15,12 @@
 
     <services>
 
-        <service id="headsnet_money.serializer.normalizer" class="Headsnet\MoneyBundle\Serializer\Normalizer\MoneyAsDecimalNormalizer"/>
-
-        <service id="headsnet_money.twig.extension.utils" class="Headsnet\MoneyBundle\Twig\Extension\MoneyUtilsExtension"
-                 public="false">
+        <service id="headsnet_money.twig.extension.utils" class="Headsnet\MoneyBundle\Twig\Extension\MoneyUtilsExtension" public="false">
             <tag name="twig.extension"/>
         </service>
         <service id="Headsnet\MoneyBundle\Twig\Extension\MoneyUtilsExtension" alias="headsnet_money.twig.extension.utils"/>
 
-        <service id="headsnet_money.twig.extension.format" class="Headsnet\MoneyBundle\Twig\Extension\FormatMoneyExtension"
-                 public="false">
+        <service id="headsnet_money.twig.extension.format" class="Headsnet\MoneyBundle\Twig\Extension\FormatMoneyExtension" public="false">
             <tag name="twig.extension"/>
         </service>
         <service id="Headsnet\MoneyBundle\Twig\Extension\FormatMoneyExtension" alias="headsnet_money.twig.extension.format"/>
@@ -37,7 +33,7 @@
         <service id="headsnet_money.serializer.normalizer" class="Headsnet\MoneyBundle\Serializer\Normalizer\MoneyAsDecimalNormalizer">
             <tag name="serializer.normalizer" />
         </service>
-        <service id="Headsnet\MoneyBundle\Serializer\Normalizer\MoneyAsDecimal" alias="headsnet_money.serializer.normalizer"/>
+        <service id="Headsnet\MoneyBundle\Serializer\Normalizer\MoneyAsDecimalNormalizer" alias="headsnet_money.serializer.normalizer"/>
     </services>
 
 </container>
