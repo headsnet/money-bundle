@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ This file is part of the Symfony HeadsnetMoneyBundle.
+  ~
+  ~ (c) Headstrong Internet Services Ltd 2019
+  ~
+  ~ For the full copyright and license information, please view the LICENSE
+  ~ file that was distributed with this source code.
+  -->
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+        https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="headsnet_money.serializer.normalizer" class="Headsnet\MoneyBundle\Serializer\Normalizer\MoneyAsDecimalNormalizer"/>
+
+        <service id="headsnet_money.twig.extension.utils" class="Headsnet\MoneyBundle\Twig\Extension\MoneyUtilsExtension"
+                 public="false">
+            <tag name="twig.extension"/>
+        </service>
+        <service id="Headsnet\MoneyBundle\Twig\Extension\MoneyUtilsExtension" alias="headsnet_money.twig.extension.utils"/>
+
+        <service id="headsnet_money.twig.extension.format" class="Headsnet\MoneyBundle\Twig\Extension\FormatMoneyExtension"
+                 public="false">
+            <tag name="twig.extension"/>
+        </service>
+        <service id="Headsnet\MoneyBundle\Twig\Extension\FormatMoneyExtension" alias="headsnet_money.twig.extension.format"/>
+
+        <service id="headsnet_money.form.type" class="Headsnet\MoneyBundle\Form\Type\MoneyType">
+            <tag name="form.type" alias="headsnet_money"/>
+        </service>
+        <service id="Headsnet\MoneyBundle\Form\Type\MoneyType" alias="headsnet_money.form.type"/>
+
+        <service id="headsnet_money.serializer.normalizer" class="Headsnet\MoneyBundle\Serializer\Normalizer\MoneyAsDecimalNormalizer">
+            <tag name="serializer.normalizer" />
+        </service>
+        <service id="Headsnet\MoneyBundle\Serializer\Normalizer\MoneyAsDecimal" alias="headsnet_money.serializer.normalizer"/>
+    </services>
+
+</container>

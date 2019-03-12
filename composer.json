@@ -1,0 +1,38 @@
+{
+  "name": "headsnet/money-bundle",
+  "type": "symfony-bundle",
+  "description": "Integrates moneyphp/money into your Symfony application",
+  "keywords": ["bundle", "money", "moneyphp", "money pattern"],
+  "homepage": "https://github.com/headsnet/money-bundle",
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/headsnet/money-bundle/issues"
+  },
+  "require": {
+    "php": ">=7.2",
+    "moneyphp/money": "^3.2",
+    "symfony/framework-bundle": "^4.0"
+  },
+  "require-dev": {
+    "doctrine/doctrine-bundle": "~1.0",
+    "symfony/form": "^4.0",
+    "symfony/serializer": "^4.0",
+    "symfony/templating": "^4.0",
+    "symfony/twig-bundle": "^4.0"
+  },
+  "suggest": {
+    "doctrine/doctrine-bundle": "Add a Money DBAL mapping type",
+    "symfony/serializer": "Serialize/deserialize Money objects using Symfony library",
+    "symfony/form": "Add a data transformer",
+    "symfony/templating": "Format and manipulate Money in templates",
+    "symfony/twig-bundle": "Format and manipulate Money in Twig templates"
+  },
+  "autoload": {
+    "psr-4": {
+      "Headsnet\\MoneyBundle\\": ""
+    },
+    "exclude-from-classmap": [
+      "/Tests/"
+    ]
+  }
+}
