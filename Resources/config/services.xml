@@ -26,14 +26,17 @@
         <service id="headsnet_money.form.type" class="Headsnet\MoneyBundle\Form\Type\MoneyType">
             <tag name="form.type" alias="headsnet_money"/>
         </service>
+        <service id="Headsnet\MoneyBundle\Form\Type\MoneyType" alias="headsnet_money.form.type"/>
 
         <service id="headsnet_money.serializer.normalizer" class="Headsnet\MoneyBundle\Serializer\Normalizer\MoneyNormalizer">
             <tag name="serializer.normalizer" priority="-700" />
         </service>
+        <service id="Headsnet\MoneyBundle\Serializer\Normalizer\MoneyNormalizer" alias="headsnet_money.serializer.normalizer"/>
 
         <service id="headsnet_money.serializer.decimal_normalizer" class="Headsnet\MoneyBundle\Serializer\Normalizer\MoneyAsDecimalNormalizer">
             <tag name="serializer.normalizer" priority="-720" />
         </service>
+        <service id="Headsnet\MoneyBundle\Serializer\Normalizer\MoneyAsDecimalNormalizer" alias="headsnet_money.serializer.decimal_normalizer"/>
 
     </services>
 
