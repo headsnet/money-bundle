@@ -32,7 +32,7 @@ class MoneyAsDecimalNormalizer implements NormalizerInterface
 	{
 		$currencies = new ISOCurrencies();
 
-		$numberFormatter = new \NumberFormatter('fr_FR', \NumberFormatter::DECIMAL);
+		$numberFormatter = new \NumberFormatter('en_GB', \NumberFormatter::DECIMAL);
 		$this->moneyFormatter = new IntlMoneyFormatter($numberFormatter, $currencies);
 	}
 
