@@ -20,38 +20,10 @@ class MoneyGreaterThan extends Constraint
     /**
      * @var string
      */
-    public $message = 'This value must be greater than {{ compared_value }}!';
+    public $message = 'This value must be greater than {{ min }}!';
 
     /**
-     * @var Carbon
+     * @var int
      */
-    public $comparedValue;
-
-    /**
-     * @param int $value
-     */
-    public function __construct($value)
-    {
-        $this->comparedValue = $value;
-
-        parent::__construct();
-    }
-
-    /**
-     * Get class constraints and properties
-     *
-     * @return array
-     */
-    public function getTargets(): array
-    {
-        return [self::PROPERTY_CONSTRAINT];
-    }
-
-    /**
-     * @return int
-     */
-    public function getComparedValue(): int
-    {
-        return $this->comparedValue;
-    }
+    public $min;
 }

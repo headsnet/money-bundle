@@ -38,6 +38,10 @@
         </service>
         <service id="Headsnet\MoneyBundle\Serializer\Normalizer\MoneyAsDecimalNormalizer" alias="headsnet_money.serializer.decimal_normalizer"/>
 
+        <service id="headsnet_money.validator.greater_than" class="Headsnet\MoneyBundle\Validator\Constraints\MoneyGreaterThan">
+            <tag name="validator.constraint_validator" />
+        </service>
+
     </services>
 
 </container>
