@@ -11,38 +11,33 @@
 namespace Headsnet\MoneyBundle\Validator\Constraints;
 
 use Money\Money;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
-use Symfony\Component\Validator\Exception\UnexpectedValueException;
 
 class MoneyGreaterThanValidator extends ConstraintValidator
 {
     /**
      * @param Money $value
+     * @param MoneyGreaterThan $constraint
      */
-    public function validate($money, Constraint $constraint)
+    public function validate($value, Constraint $constraint)
     {
-        if (!$constraint instanceof MoneyGreaterThan)
-        {
-            throw new UnexpectedTypeException($constraint, MoneyGreaterThan::class);
-        }
-
-        if (null === $money || '' === $money)
+        if (null === $value || '' === $value)
         {
             return;
         }
 
-
-        if (!$money instanceof Money)
+        if (!$value instanceof Money)
         {
-            throw new UnexpectedValueException($money, Money::class);
+            throw new UnexpectedTypeException($value, Money::class);
         }
 
-        if ($money->lessThanOrEqual(new Money($constraint->min, $money->getCurrency())))
+        if ($value->lessThanOrEqual(new Money($constraint->value, $value->getCurrency())))
         {
             $this->context->buildViolation($constraint->message)
-                ->setParameter('{{ value }}', $money)
+                ->setParameter('{{ value }}', $constraint->value)
                 ->addViolation();
         }
     }
