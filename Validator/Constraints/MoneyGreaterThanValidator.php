@@ -34,12 +34,10 @@ class MoneyGreaterThanValidator extends ConstraintValidator
             throw new UnexpectedTypeException($value, Money::class);
         }
 
-        $compareWith = $constraint->value['value'];
-
-        if ($value->lessThanOrEqual(new Money($compareWith, $value->getCurrency())))
+        if ($value->lessThanOrEqual(new Money($constraint->compareWith, $value->getCurrency())))
         {
             $this->context->buildViolation($constraint->message)
-                ->setParameter('{{ value }}', $compareWith)
+                ->setParameter('{{ compareWith }}', $constraint->compareWith)
                 ->addViolation();
         }
     }

@@ -21,10 +21,18 @@ class MoneyGreaterThan extends Constraint
     /**
      * @var string
      */
-    public $message = 'This value must be greater than {{ value }}!';
+    public $message = 'This value must be greater than {{ compareWith }}!';
 
     /**
      * @var Money
      */
-    public $value;
+    public $compareWith;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDefaultOption()
+    {
+        return 'compareWith';
+    }
 }
