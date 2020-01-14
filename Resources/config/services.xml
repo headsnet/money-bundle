@@ -2,7 +2,7 @@
 <!--
   ~ This file is part of the Symfony HeadsnetMoneyBundle.
   ~
-  ~ (c) Headstrong Internet Services Ltd 2019
+  ~ (c) Headstrong Internet Services Ltd 2020
   ~
   ~ For the full copyright and license information, please view the LICENSE
   ~ file that was distributed with this source code.
@@ -39,6 +39,10 @@
         <service id="Headsnet\MoneyBundle\Serializer\Normalizer\MoneyAsDecimalNormalizer" alias="headsnet_money.serializer.decimal_normalizer"/>
 
         <service id="headsnet_money.validator.greater_than" class="Headsnet\MoneyBundle\Validator\Constraints\MoneyGreaterThan">
+            <tag name="validator.constraint_validator" />
+        </service>
+
+        <service id="headsnet_money.validator.greater_than_or_equal" class="Headsnet\MoneyBundle\Validator\Constraints\MoneyGreaterThanOrEqual">
             <tag name="validator.constraint_validator" />
         </service>
 

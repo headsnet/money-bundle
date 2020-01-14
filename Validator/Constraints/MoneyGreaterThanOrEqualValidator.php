@@ -16,11 +16,11 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
-class MoneyGreaterThanValidator extends ConstraintValidator
+class MoneyGreaterThanOrEqualValidator extends ConstraintValidator
 {
     /**
-     * @param Money $value
-     * @param MoneyGreaterThan $constraint
+     * @param Money                   $value
+     * @param MoneyGreaterThanOrEqual $constraint
      */
     public function validate($value, Constraint $constraint)
     {
@@ -34,7 +34,7 @@ class MoneyGreaterThanValidator extends ConstraintValidator
             throw new UnexpectedTypeException($value, Money::class);
         }
 
-        if (false === $value->greaterThan(new Money($constraint->compareWith, $value->getCurrency())))
+        if (false === $value->greaterThanOrEqual(new Money($constraint->compareWith, $value->getCurrency())))
         {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('{{ compareWith }}', $constraint->compareWith)
