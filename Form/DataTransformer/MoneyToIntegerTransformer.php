@@ -2,7 +2,7 @@
 /**
  * This file is part of the Symfony HeadsnetMoneyBundle.
  *
- * (c) Headstrong Internet Services Ltd 2019
+ * (c) Headstrong Internet Services Ltd 2020
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -47,14 +47,12 @@ class MoneyToIntegerTransformer implements DataTransformerInterface
 	 */
 	public function reverseTransform($moneyNumber)
 	{
-		if (!$moneyNumber)
-		{
-			return null;
-		}
+        if (null === $moneyNumber)
+        {
+            return Money::EUR(0);
+        }
 
-		$money = Money::EUR($moneyNumber);
-
-		return $money;
+        return Money::EUR($moneyNumber);
 	}
 
 }
