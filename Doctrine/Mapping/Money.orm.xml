@@ -2,17 +2,22 @@
 <!--
   ~ This file is part of the Symfony HeadsnetMoneyBundle.
   ~
-  ~ (c) Headstrong Internet Services Ltd 2019
+  ~ (c) Headstrong Internet Services Ltd 2020
   ~
   ~ For the full copyright and license information, please view the LICENSE
   ~ file that was distributed with this source code.
   -->
 
-<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <embeddable name="Money\Money">
 
-        <field name="amount" type="integer"/>
+        <!-- Using decimal with a scale of 0 allows us to effectively have an integer column,
+             but that Doctrine hydrates to a string, which is what is required by Money/Money -->
+        <field name="amount" type="decimal" precision="0" scale="0" />
 
         <field name="currency" type="currency"/>
 
