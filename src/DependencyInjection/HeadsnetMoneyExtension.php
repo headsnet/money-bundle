@@ -1,8 +1,8 @@
 <?php
-/**
+/*
  * This file is part of the Symfony HeadsnetMoneyBundle.
  *
- * (c) Headstrong Internet Services Ltd 2019
+ * (c) Headstrong Internet Services Ltd 2021
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -20,13 +20,12 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  */
 class HeadsnetMoneyExtension extends Extension
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function load(array $configs, ContainerBuilder $container)
-	{
-		$loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-		$loader->load('services.xml');
-	}
-
+    /**
+     * {@inheritdoc}
+     */
+    public function load(array $configs, ContainerBuilder $container)
+    {
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader->load('services.xml');
+    }
 }

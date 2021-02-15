@@ -11,26 +11,23 @@
   "require": {
     "php": ">=7.2",
     "moneyphp/money": "^3.2",
-    "symfony/framework-bundle": "^4.0"
+    "symfony/framework-bundle": "^4.0|^5.0"
   },
   "require-dev": {
-    "doctrine/doctrine-bundle": "~1.0",
-    "symfony/form": "^4.0",
-    "symfony/serializer": "^4.0",
-    "symfony/twig-bundle": "^4.0"
+    "doctrine/doctrine-bundle": "^1.0|^2.0",
+    "symfony/form": "^4.0|^5.0",
+    "symfony/serializer": "^4.0|^5.0",
+    "symfony/twig-bundle": "^4.0|^5.0"
   },
   "suggest": {
     "doctrine/doctrine-bundle": "Add a Money DBAL mapping type",
-    "symfony/serializer": "Serialize/deserialize Money objects using Symfony library",
     "symfony/form": "Add a data transformer",
+    "symfony/serializer": "Serialize/deserialize Money objects using Symfony library",
     "symfony/twig-bundle": "Format and manipulate Money in Twig templates"
   },
   "autoload": {
     "psr-4": {
-      "Headsnet\\MoneyBundle\\": ""
-    },
-    "exclude-from-classmap": [
-      "/Tests/"
-    ]
+      "Headsnet\\MoneyBundle\\": "src/"
+    }
   }
 }
