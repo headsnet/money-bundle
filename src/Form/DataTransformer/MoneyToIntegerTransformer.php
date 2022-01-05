@@ -2,7 +2,7 @@
 /*
  * This file is part of the Symfony HeadsnetMoneyBundle.
  *
- * (c) Headstrong Internet Services Ltd 2021
+ * (c) Headstrong Internet Services Ltd 2022
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -22,7 +22,7 @@ class MoneyToIntegerTransformer implements DataTransformerInterface
     /**
      * Transforms a Money object to a numeric string.
      *
-     * @param  Money|null $money
+     * @param Money|null $money
      *
      * @return string
      */
@@ -49,6 +49,8 @@ class MoneyToIntegerTransformer implements DataTransformerInterface
             return Money::EUR(0);
         }
 
-        return Money::EUR($moneyNumber);
+        return Money::EUR(
+            sprintf('%.0F', $moneyNumber)
+        );
     }
 }
