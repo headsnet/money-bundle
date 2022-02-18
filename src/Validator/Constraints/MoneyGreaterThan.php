@@ -2,7 +2,7 @@
 /*
  * This file is part of the Symfony HeadsnetMoneyBundle.
  *
- * (c) Headstrong Internet Services Ltd 2021
+ * (c) Headstrong Internet Services Ltd 2022
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -31,7 +31,7 @@ class MoneyGreaterThan extends Constraint
     /**
      * {@inheritdoc}
      */
-    public function getDefaultOption()
+    public function getDefaultOption(): ?string
     {
         return 'compareWith';
     }

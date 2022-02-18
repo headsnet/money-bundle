@@ -2,7 +2,7 @@
 /*
  * This file is part of the Symfony HeadsnetMoneyBundle.
  *
- * (c) Headstrong Internet Services Ltd 2021
+ * (c) Headstrong Internet Services Ltd 2022
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -38,7 +38,7 @@ class MoneyNormalizer implements NormalizerInterface, DenormalizerInterface
     /**
      * {@inheritdoc}
      */
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null): bool
     {
         return $data instanceof Money;
     }
@@ -59,7 +59,7 @@ class MoneyNormalizer implements NormalizerInterface, DenormalizerInterface
     /**
      * @inheritdoc
      */
-    public function supportsDenormalization($object, $type, $format = null)
+    public function supportsDenormalization($object, $type, $format = null): bool
     {
         if ($type !== Money::class) {
             return false;
