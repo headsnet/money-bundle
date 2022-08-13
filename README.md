@@ -4,6 +4,20 @@ Money Bundle
 A Symfony bundle to integrate [Money PHP](https://github.com/moneyphp/money) 
 and provide various Twig and Doctrine helpers.
 
+## Installation
+
+Simply install with Composer in the usual way.
+
+```bash
+composer require headsnet/money-bundle
+```
+
+Then add to your `bundles.php` file.
+
+```php
+Headsnet\MoneyBundle\HeadsnetMoneyBundle::class => ['all' => true]
+```
+
 ## Doctrine
 
 The bundle provides a custom Doctrine Type for the `Currency` element of the Money object, and then a Doctrine 
@@ -62,3 +76,20 @@ $amount = Money::EUR(200);
 $serializer->serialize($amount, 'json'); // ==> '{"amount":"200","currency":"EUR"}'
 
 ```
+
+## Contributing
+
+Contributions are welcome. Please submit pull requests with one fix/feature per
+pull request.
+
+Composer scripts are configured for your convenience:
+
+```
+> composer cs         # Run coding standards checks
+> composer cs-fix     # Fix coding standards violations
+```
+
+### Licence
+
+This code is released under the MIT licence. Please see the LICENSE file for more information.
+

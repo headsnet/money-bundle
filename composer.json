@@ -17,7 +17,10 @@
     "doctrine/doctrine-bundle": "^1.0|^2.0",
     "symfony/form": "^4.0|^5.0",
     "symfony/serializer": "^4.0|^5.0",
-    "symfony/twig-bundle": "^4.0|^5.0"
+    "symfony/twig-bundle": "^4.0|^5.0",
+    "phpunit/phpunit": "^8.0 || ^9.0",
+    "symplify/easy-coding-standard": "^11",
+    "phpstan/phpstan": "^1.8"
   },
   "suggest": {
     "doctrine/doctrine-bundle": "Add a Money DBAL mapping type",
@@ -29,5 +32,9 @@
     "psr-4": {
       "Headsnet\\MoneyBundle\\": "src/"
     }
+  },
+  "scripts": {
+    "cs": "vendor/bin/ecs check --ansi --config=ecs.php",
+    "cs-fix": "vendor/bin/ecs check --ansi --config=ecs.php --fix"
   }
 }
