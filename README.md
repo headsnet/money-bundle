@@ -1,8 +1,26 @@
+![Build Status](https://github.com/headsnet/money-bundle/actions/workflows/ci.yaml/badge.svg)
+[![Latest Stable Version](https://poser.pugx.org/headsnet/money-bundle/v)](//packagist.org/packages/headsnet/money-bundle)
+[![Total Downloads](https://poser.pugx.org/headsnet/money-bundle/downloads)](//packagist.org/packages/headsnet/money-bundle)
+[![License](https://poser.pugx.org/headsnet/money-bundle/license)](//packagist.org/packages/headsnet/money-bundle)
+
 Money Bundle
 ==
 
-A Symfony bundle to integrate [Money PHP](https://github.com/moneyphp/money) 
-and provide various Twig and Doctrine helpers.
+A Symfony bundle to integrate [Money PHP](https://github.com/moneyphp/money) into your application.
+
+## Summary Of Features
+
+
+- **Twig Extensions** - display and manipulate Money objects in Twig templates
+
+
+- **Doctrine Support** - persist Money objects in your storage layer
+
+
+- **Custom Serializer** - serialize Money objects to and from string or array values
+
+
+- **Custom Form Type** - use Money objects in form data classes
 
 ## Installation
 
