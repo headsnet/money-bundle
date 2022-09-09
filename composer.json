@@ -10,7 +10,7 @@
   },
   "require": {
     "php": ">=7.4",
-    "moneyphp/money": "^4.0",
+    "moneyphp/money": "^3.3 || ^4.0",
     "symfony/framework-bundle": "^4.4 || ^5.0 || ^6.0"
   },
   "require-dev": {
