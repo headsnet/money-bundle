@@ -15,19 +15,12 @@ use Money\Money;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-/**
- * Normalize a Money object in to a decimal value
- */
 class MoneyNormalizer implements NormalizerInterface, DenormalizerInterface
 {
     /**
      * @param Money $object
-     * @param string|null  $format
-     * @param array $context
-     *
-     * @return string
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, string $format = null, array $context = []): array
     {
         return [
             'amount' => $object->getAmount(),
@@ -35,31 +28,20 @@ class MoneyNormalizer implements NormalizerInterface, DenormalizerInterface
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, string $format = null): bool
     {
         return $data instanceof Money;
     }
 
     /**
-     * @param array  $object
-     * @param string $class
-     * @param string|null   $format
-     * @param array  $context
-     *
-     * @return Money|object
+     * @param array{amount: numeric-string, currency: string} $data
      */
-    public function denormalize($object, $class, $format = null, array $context = [])
+    public function denormalize($data, string $type, string $format = null, array $context = []): Money
     {
-        return new Money($object['amount'], new Currency($object['currency']));
+        return new Money($data['amount'], new Currency($data['currency']));
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function supportsDenormalization($object, $type, $format = null): bool
+    public function supportsDenormalization($data, string $type, string $format = null): bool
     {
         if ($type !== Money::class) {
             return false;

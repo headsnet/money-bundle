@@ -2,7 +2,7 @@
 /*
  * This file is part of the Symfony HeadsnetMoneyBundle.
  *
- * (c) Headstrong Internet Services Ltd 2021
+ * (c) Headstrong Internet Services Ltd 2022
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -18,35 +18,24 @@ use Doctrine\DBAL\Types\Type;
 use InvalidArgumentException;
 use Money\Currency;
 
-/**
- * Class CurrencyType
- */
 class CurrencyType extends Type
 {
     public const NAME = 'currency';
 
-    /**
-     * @param array            $fieldDeclaration
-     * @param AbstractPlatform $platform
-     *
-     * @return string
-     */
-    public function getSqlDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
+    public function getSqlDeclaration(array $column, AbstractPlatform $platform): string
     {
-        return $platform->getVarcharTypeDeclarationSQL([
+        return $platform->getStringTypeDeclarationSQL([
             'length' => 3,
             'fixed' => true,
         ]);
     }
 
     /**
-     * @param mixed            $value
-     * @param AbstractPlatform $platform
+     * @param Currency|string|null $value
      *
-     * @return mixed|Currency|null
      * @throws ConversionException
      */
-    public function convertToPhpValue($value, AbstractPlatform $platform)
+    public function convertToPhpValue($value, AbstractPlatform $platform): ?Currency
     {
         if (empty($value)) {
             return null;
@@ -64,13 +53,11 @@ class CurrencyType extends Type
     }
 
     /**
-     * @param mixed            $value
-     * @param AbstractPlatform $platform
+     * @param Currency|string $value
      *
-     * @return mixed|string|null
      * @throws ConversionException
      */
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
         if (empty($value)) {
             return null;
@@ -87,20 +74,12 @@ class CurrencyType extends Type
         return $currency->getCode();
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return self::NAME;
     }
 
-    /**
-     * @param AbstractPlatform $platform
-     *
-     * @return bool
-     */
-    public function requiresSqlCommentHint(AbstractPlatform $platform)
+    public function requiresSqlCommentHint(AbstractPlatform $platform): bool
     {
         return true;
     }

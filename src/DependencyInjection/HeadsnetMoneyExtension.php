@@ -17,9 +17,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class HeadsnetMoneyExtension extends Extension
 {
-    /**
-     * {@inheritdoc}
-     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
