@@ -1,4 +1,4 @@
-/composer.lock
-/docker-compose.yml
-/phpunit.xml
-/vendor/
+.phpunit.cache
+composer.lock
+phpunit.xml
+vendor/

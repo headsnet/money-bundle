@@ -10,7 +10,6 @@
 
 namespace Headsnet\MoneyBundle\Validator\Constraints;
 
-use Money\Money;
 use Symfony\Component\Validator\Constraint;
 
 /**
@@ -20,7 +19,10 @@ class MoneyGreaterThan extends Constraint
 {
     public string $message = 'This value must be greater than {{ compareWith }}!';
 
-    public Money $compareWith;
+    /**
+     * @var numeric-string
+     */
+    public string $compareWith;
 
     public function getDefaultOption(): string
     {

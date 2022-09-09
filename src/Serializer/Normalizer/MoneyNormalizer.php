@@ -19,6 +19,9 @@ class MoneyNormalizer implements NormalizerInterface, DenormalizerInterface
 {
     /**
      * @param Money $object
+     * @param string[] $context
+     *
+     * @return array{amount: string, currency: Currency}
      */
     public function normalize($object, string $format = null, array $context = []): array
     {
@@ -34,7 +37,8 @@ class MoneyNormalizer implements NormalizerInterface, DenormalizerInterface
     }
 
     /**
-     * @param array{amount: numeric-string, currency: string} $data
+     * @param array{amount: numeric-string, currency: non-empty-string} $data
+     * @param string[] $context
      */
     public function denormalize($data, string $type, string $format = null, array $context = []): Money
     {

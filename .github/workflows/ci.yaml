@@ -1,0 +1,59 @@
+name: CI
+
+on:
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
+
+jobs:
+
+    phpunit:
+        name: PHPUnit with PHP ${{ matrix.php }} and Symfony ${{ matrix.symfony }}
+        runs-on: ${{ matrix.operating-system }}
+
+        strategy:
+            fail-fast: false
+            matrix:
+                operating-system: [ ubuntu-latest, windows-latest ]
+                php: [ '7.4', '8.0', '8.1' ]
+                symfony: [ '4.4.*', '5.4.*', '6.0.*', '6.1.*' ]
+                exclude:
+                    - { php: '7.4', symfony: '6.0.*' }
+                    - { php: '7.4', symfony: '6.1.*' }
+                    - { php: '8.0', symfony: '6.1.*' }
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Setup PHP ${{ matrix.php }}
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php }}
+                  tools: flex
+                  coverage: none
+
+            - name: Install composer dependencies
+              uses: ramsey/composer-install@v2
+              env:
+                  SYMFONY_REQUIRE: ${{ matrix.symfony }}
+
+            - name: Run test suite on PHP ${{ matrix.php }} and Symfony ${{ matrix.symfony }}
+              run: vendor/bin/phpunit tests
+
+    ecs:
+        name: Easy Coding Standard
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: ramsey/composer-install@v2
+            - run: vendor/bin/ecs
+
+    phpstan:
+        name: PHPStan
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: ramsey/composer-install@v2
+            - run: vendor/bin/phpstan

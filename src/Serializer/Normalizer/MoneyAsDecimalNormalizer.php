@@ -29,6 +29,7 @@ class MoneyAsDecimalNormalizer implements NormalizerInterface
 
     /**
      * @param Money $object
+     * @param string[] $context
      */
     public function normalize($object, string $format = null, array $context = []): string
     {

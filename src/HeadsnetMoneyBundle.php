@@ -11,6 +11,8 @@
 namespace Headsnet\MoneyBundle;
 
 use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
+use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Exception;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\Persistence\ManagerRegistry;
 use Headsnet\MoneyBundle\Doctrine\DBAL\Types\CurrencyType;
@@ -19,7 +21,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class HeadsnetMoneyBundle extends Bundle
 {
-    public function build(ContainerBuilder $container)
+    public function build(ContainerBuilder $container): void
     {
         parent::build($container);
 
@@ -49,6 +51,9 @@ class HeadsnetMoneyBundle extends Bundle
         }
     }
 
+    /**
+     * @throws Exception
+     */
     private function addCurrencyColumnType(): void
     {
         if (!Type::hasType('currency')) {
@@ -58,6 +63,7 @@ class HeadsnetMoneyBundle extends Bundle
         /** @var ManagerRegistry $registry */
         $registry = $this->container->get('doctrine');
 
+        /** @var Connection $connection */
         foreach ($registry->getConnections() as $connection) {
             $connection->getDatabasePlatform()->registerDoctrineTypeMapping('currency', 'currency');
         }

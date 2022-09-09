@@ -29,6 +29,8 @@ class MoneyUtilsExtension extends AbstractExtension
 
     /**
      * Create Money/Money objects directly from Twig.
+     *
+     * @param non-empty-string $currency
      */
     public function createMoney(int $amount, string $currency): Money
     {

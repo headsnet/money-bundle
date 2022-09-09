@@ -22,6 +22,9 @@ class CurrencyType extends Type
 {
     public const NAME = 'currency';
 
+    /**
+     * @param string[] $column
+     */
     public function getSqlDeclaration(array $column, AbstractPlatform $platform): string
     {
         return $platform->getStringTypeDeclarationSQL([
