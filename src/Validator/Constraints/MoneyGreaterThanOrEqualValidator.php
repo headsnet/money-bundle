@@ -2,7 +2,7 @@
 /*
  * This file is part of the Symfony HeadsnetMoneyBundle.
  *
- * (c) Headstrong Internet Services Ltd 2021
+ * (c) Headstrong Internet Services Ltd 2022
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -19,10 +19,10 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 class MoneyGreaterThanOrEqualValidator extends ConstraintValidator
 {
     /**
-     * @param Money                   $value
+     * @param Money|string|null $value
      * @param MoneyGreaterThanOrEqual $constraint
      */
-    public function validate($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint): void
     {
         if (null === $value || '' === $value) {
             return;

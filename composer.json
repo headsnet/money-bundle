@@ -32,7 +32,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Headsnet\\MoneyBundle\\": "src/"
+      "Headsnet\\MoneyBundle\\": "src/",
+      "Headsnet\\MoneyBundle\\Test\\": "tests/"
     }
   },
   "scripts": {
