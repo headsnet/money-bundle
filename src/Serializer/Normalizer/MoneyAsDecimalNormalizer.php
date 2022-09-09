@@ -15,19 +15,10 @@ use Money\Formatter\IntlMoneyFormatter;
 use Money\Money;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-/**
- * Normalize a Money object in to a decimal value
- */
 class MoneyAsDecimalNormalizer implements NormalizerInterface
 {
-    /**
-     * @var IntlMoneyFormatter
-     */
-    private $moneyFormatter;
+    private IntlMoneyFormatter $moneyFormatter;
 
-    /**
-     * Initialise the formatters just once, here in the constructor
-     */
     public function __construct()
     {
         $currencies = new ISOCurrencies();
@@ -38,20 +29,13 @@ class MoneyAsDecimalNormalizer implements NormalizerInterface
 
     /**
      * @param Money $object
-     * @param null  $format
-     * @param array $context
-     *
-     * @return string
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, string $format = null, array $context = []): string
     {
         return $this->moneyFormatter->format($object);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, string $format = null): bool
     {
         return $data instanceof Money;
     }

@@ -2,7 +2,7 @@
 /*
  * This file is part of the Symfony HeadsnetMoneyBundle.
  *
- * (c) Headstrong Internet Services Ltd 2021
+ * (c) Headstrong Internet Services Ltd 2022
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -20,9 +20,6 @@ use Twig\TwigFunction;
  */
 class MoneyUtilsExtension extends AbstractExtension
 {
-    /**
-     * @return array
-     */
     public function getFunctions(): array
     {
         return array(
@@ -32,11 +29,6 @@ class MoneyUtilsExtension extends AbstractExtension
 
     /**
      * Create Money/Money objects directly from Twig.
-     *
-     * @param int    $amount
-     * @param string $currency
-     *
-     * @return Money
      */
     public function createMoney(int $amount, string $currency): Money
     {

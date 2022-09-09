@@ -2,7 +2,7 @@
 /*
  * This file is part of the Symfony HeadsnetMoneyBundle.
  *
- * (c) Headstrong Internet Services Ltd 2021
+ * (c) Headstrong Internet Services Ltd 2022
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -21,20 +21,12 @@ use Twig\TwigFilter;
  */
 class FormatMoneyExtension extends AbstractExtension
 {
-    /**
-     * @return array
-     */
-    public function getFilters()
+    public function getFilters(): array
     {
         return [new TwigFilter('money', [$this, 'moneyFilter'])];
     }
 
-    /**
-     * @param Money $money
-     *
-     * @return string
-     */
-    public function moneyFilter(Money $money)
+    public function moneyFilter(Money $money): string
     {
         $currencies = new ISOCurrencies();
 

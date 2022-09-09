@@ -22,35 +22,32 @@ class MoneyToIntegerTransformer implements DataTransformerInterface
     /**
      * Transforms a Money object to a numeric string.
      *
-     * @param Money|null $money
-     *
-     * @return string
+     * @param Money|null $value
      */
-    public function transform($money)
+    public function transform($value): string
     {
-        if (null === $money) {
+        if (null === $value) {
             return '0';
         }
 
-        return $money->getAmount();
+        return $value->getAmount();
     }
 
     /**
      * Transforms a numeric string to a Money object.
      *
-     * @param string $moneyNumber
+     * @param string|null $value
      *
-     * @return Money|null
      * @throws TransformationFailedException If Money object is not found.
      */
-    public function reverseTransform($moneyNumber)
+    public function reverseTransform($value): Money
     {
-        if (null === $moneyNumber) {
+        if (null === $value) {
             return Money::EUR(0);
         }
 
         return Money::EUR(
-            sprintf('%.0F', $moneyNumber)
+            sprintf('%.0F', $value)
         );
     }
 }

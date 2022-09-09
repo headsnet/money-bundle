@@ -18,20 +18,11 @@ use Symfony\Component\Validator\Constraint;
  */
 class MoneyGreaterThanOrEqual extends Constraint
 {
-    /**
-     * @var string
-     */
-    public $message = 'This value must be greater than or equal to {{ compareWith }}!';
+    public string $message = 'This value must be greater than or equal to {{ compareWith }}!';
 
-    /**
-     * @var Money
-     */
-    public $compareWith;
+    public Money $compareWith;
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getDefaultOption(): ?string
+    public function getDefaultOption(): string
     {
         return 'compareWith';
     }
