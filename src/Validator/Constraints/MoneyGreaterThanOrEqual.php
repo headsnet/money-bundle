@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraint;
 /**
  * @Annotation
  */
+#[\Attribute]
 class MoneyGreaterThanOrEqual extends Constraint
 {
     public string $message = 'This value must be greater than or equal to {{ compareWith }}!';
