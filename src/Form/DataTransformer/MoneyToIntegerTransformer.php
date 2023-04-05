@@ -10,6 +10,7 @@
 
 namespace Headsnet\MoneyBundle\Form\DataTransformer;
 
+use Money\Currency;
 use Money\Money;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
@@ -19,6 +20,13 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
  */
 class MoneyToIntegerTransformer implements DataTransformerInterface
 {
+    private Currency $currency;
+
+    public function __construct(string $currency)
+    {
+        $this->currency = new Currency($currency);
+    }
+
     /**
      * Transforms a Money object to a numeric string.
      *
@@ -43,11 +51,15 @@ class MoneyToIntegerTransformer implements DataTransformerInterface
     public function reverseTransform($value): Money
     {
         if (null === $value) {
-            return Money::EUR(0);
+            return new Money(
+                0,
+                $this->currency
+            );
         }
 
-        return Money::EUR(
-            sprintf('%.0F', $value)
+        return new Money(
+            sprintf('%.0F', $value),
+            $this->currency
         );
     }
 }

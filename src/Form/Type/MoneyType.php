@@ -23,7 +23,9 @@ class MoneyType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->addModelTransformer(new MoneyToIntegerTransformer());
+        $builder->addModelTransformer(
+            new MoneyToIntegerTransformer($options['currency'])
+        );
     }
 
     public function configureOptions(OptionsResolver $resolver): void
