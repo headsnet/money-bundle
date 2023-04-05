@@ -30,12 +30,14 @@ class MoneyType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(
-            [
+        $resolver
+            ->setDefaults([
                 'divisor' => 100,
-                'currency' => 'EUR'
-            ]
-        );
+                'currency' => 'EUR',
+                'attr' => ['inputmode' => 'numeric'],
+            ])
+            ->setAllowedTypes('currency', 'string')
+        ;
     }
 
     public function getBlockPrefix(): string
