@@ -13,6 +13,7 @@ namespace Headsnet\MoneyBundle\Twig\Extension;
 use Money\Currencies\ISOCurrencies;
 use Money\Formatter\IntlMoneyFormatter;
 use Money\Money;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -36,11 +37,12 @@ class FormatMoneyExtension extends AbstractExtension
 
     public function moneyFilter(Money $money, string $locale = null): string
     {
-        $defaultLocale = $this->requestStack->getCurrentRequest()->getLocale();
-        $currencies = new ISOCurrencies();
+        /** @var Request $request */
+        $request = $this->requestStack->getCurrentRequest();
+        $defaultLocale = $request->getLocale();
 
-        $numberFormatter = new \NumberFormatter($locale ?? $defaultLocale ?? 'fr_FR', \NumberFormatter::CURRENCY);
-        $moneyFormatter = new IntlMoneyFormatter($numberFormatter, $currencies);
+        $numberFormatter = new \NumberFormatter($locale ?? $defaultLocale, \NumberFormatter::CURRENCY);
+        $moneyFormatter = new IntlMoneyFormatter($numberFormatter, new ISOCurrencies());
 
         return $moneyFormatter->format($money);
     }

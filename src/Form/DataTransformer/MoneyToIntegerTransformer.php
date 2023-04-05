@@ -22,6 +22,9 @@ class MoneyToIntegerTransformer implements DataTransformerInterface
 {
     private Currency $currency;
 
+    /**
+     * @param non-empty-string $currency
+     */
     public function __construct(string $currency)
     {
         $this->currency = new Currency($currency);
