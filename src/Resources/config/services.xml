@@ -20,7 +20,7 @@
         </service>
 
         <service id="headsnet_money.twig.extension.format" class="Headsnet\MoneyBundle\Twig\Extension\FormatMoneyExtension" public="false">
-            <argument type="service" id="request_stack"/>
+            <argument type="service" id="translator"/>
             <tag name="twig.extension"/>
         </service>
 

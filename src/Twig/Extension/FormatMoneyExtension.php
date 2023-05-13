@@ -13,8 +13,7 @@ namespace Headsnet\MoneyBundle\Twig\Extension;
 use Money\Currencies\ISOCurrencies;
 use Money\Formatter\IntlMoneyFormatter;
 use Money\Money;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -23,11 +22,11 @@ use Twig\TwigFilter;
  */
 class FormatMoneyExtension extends AbstractExtension
 {
-    private RequestStack $requestStack;
+    private TranslatorInterface $translator;
 
-    public function __construct(RequestStack $requestStack)
+    public function __construct(TranslatorInterface $translator)
     {
-        $this->requestStack = $requestStack;
+        $this->translator = $translator;
     }
 
     public function getFilters(): array
@@ -37,9 +36,7 @@ class FormatMoneyExtension extends AbstractExtension
 
     public function moneyFilter(Money $money, string $locale = null): string
     {
-        /** @var Request $request */
-        $request = $this->requestStack->getCurrentRequest();
-        $defaultLocale = $request->getLocale();
+        $defaultLocale = $this->translator->getLocale();
 
         $numberFormatter = new \NumberFormatter($locale ?? $defaultLocale, \NumberFormatter::CURRENCY);
         $moneyFormatter = new IntlMoneyFormatter($numberFormatter, new ISOCurrencies());
