@@ -36,8 +36,18 @@ class MoneyAsDecimalNormalizer implements NormalizerInterface
         return $this->moneyFormatter->format($object);
     }
 
-    public function supportsNormalization($data, string $format = null): bool
+    public function supportsNormalization($data, string $format = null, array $context = []): bool
     {
         return $data instanceof Money;
+    }
+
+    /**
+     * @return array<string, bool>
+     */
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            Money::class => true,
+        ];
     }
 }
