@@ -9,4 +9,6 @@ parameters:
     bootstrapFiles:
         - vendor/autoload.php
 
-    checkGenericClassInNonGenericObjectType: false
+    ignoreErrors:
+        -
+            identifier: missingType.generics

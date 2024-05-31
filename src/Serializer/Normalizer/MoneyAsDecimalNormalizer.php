@@ -29,13 +29,16 @@ class MoneyAsDecimalNormalizer implements NormalizerInterface
 
     /**
      * @param Money $object
-     * @param string[] $context
+     * @param array<string, string> $context
      */
     public function normalize($object, string $format = null, array $context = []): string
     {
         return $this->moneyFormatter->format($object);
     }
 
+    /**
+     * @param array<string, string> $context
+     */
     public function supportsNormalization($data, string $format = null, array $context = []): bool
     {
         return $data instanceof Money;

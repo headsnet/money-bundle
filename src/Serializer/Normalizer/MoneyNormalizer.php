@@ -19,7 +19,7 @@ class MoneyNormalizer implements NormalizerInterface, DenormalizerInterface
 {
     /**
      * @param Money $object
-     * @param string[] $context
+     * @param array<string, string> $context
      *
      * @return array{amount: string, currency: Currency}
      */
@@ -31,6 +31,9 @@ class MoneyNormalizer implements NormalizerInterface, DenormalizerInterface
         ];
     }
 
+    /**
+     * @param array<string, string> $context
+     */
     public function supportsNormalization($data, string $format = null, array $context = []): bool
     {
         return $data instanceof Money;
@@ -38,13 +41,16 @@ class MoneyNormalizer implements NormalizerInterface, DenormalizerInterface
 
     /**
      * @param array{amount: numeric-string, currency: non-empty-string} $data
-     * @param string[] $context
+     * @param array<string, string> $context
      */
     public function denormalize($data, string $type, string $format = null, array $context = []): Money
     {
         return new Money($data['amount'], new Currency($data['currency']));
     }
 
+    /**
+     * @param array<string, string> $context
+     */
     public function supportsDenormalization($data, string $type, string $format = null, array $context = []): bool
     {
         if ($type !== Money::class) {
