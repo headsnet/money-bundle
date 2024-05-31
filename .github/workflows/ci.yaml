@@ -16,16 +16,18 @@ jobs:
             fail-fast: false
             matrix:
                 operating-system: [ ubuntu-latest, windows-latest ]
-                php: [ '7.4', '8.0', '8.1' ]
-                symfony: [ '4.4.*', '5.4.*', '6.0.*', '6.1.*' ]
+                php: [ '7.4', '8.0', '8.1', '8.2' ]
+                symfony: [ '4.4.*', '5.4.*', '6.4.*', '7.0.*' ]
                 exclude:
-                    - { php: '7.4', symfony: '6.0.*' }
-                    - { php: '7.4', symfony: '6.1.*' }
-                    - { php: '8.0', symfony: '6.1.*' }
+                    - { php: '7.4', symfony: '6.4.*' }
+                    - { php: '8.0', symfony: '6.4.*' }
+                    - { php: '7.4', symfony: '7.0.*' }
+                    - { php: '8.0', symfony: '7.0.*' }
+                    - { php: '8.1', symfony: '7.0.*' }
 
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Setup PHP ${{ matrix.php }}
               uses: shivammathur/setup-php@v2
@@ -35,7 +37,7 @@ jobs:
                   coverage: none
 
             - name: Install composer dependencies
-              uses: ramsey/composer-install@v2
+              uses: ramsey/composer-install@v3
               env:
                   SYMFONY_REQUIRE: ${{ matrix.symfony }}
 
@@ -46,14 +48,14 @@ jobs:
         name: Easy Coding Standard
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
-            - uses: ramsey/composer-install@v2
+            - uses: actions/checkout@v4
+            - uses: ramsey/composer-install@v3
             - run: vendor/bin/ecs
 
     phpstan:
         name: PHPStan
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
-            - uses: ramsey/composer-install@v2
+            - uses: actions/checkout@v4
+            - uses: ramsey/composer-install@v3
             - run: vendor/bin/phpstan
