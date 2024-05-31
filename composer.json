@@ -30,6 +30,9 @@
     "symfony/twig-bundle": "Format and manipulate Money in Twig templates",
     "symfony/validator": "Use custom validation constraints on Money objects"
   },
+  "conflict": {
+    "doctrine/dbal": ">=4.0.0"
+  },
   "autoload": {
     "psr-4": {
       "Headsnet\\MoneyBundle\\": "src/",
