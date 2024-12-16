@@ -34,7 +34,7 @@ class FormatMoneyExtension extends AbstractExtension
         return [new TwigFilter('money', [$this, 'moneyFilter'])];
     }
 
-    public function moneyFilter(Money $money, string $locale = null): string
+    public function moneyFilter(Money $money, string|null $locale = null): string
     {
         $defaultLocale = $this->translator->getLocale();
 
