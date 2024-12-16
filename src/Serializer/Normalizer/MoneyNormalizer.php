@@ -18,23 +18,23 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 class MoneyNormalizer implements NormalizerInterface, DenormalizerInterface
 {
     /**
-     * @param Money $object
+     * @param Money $data
      * @param array<string, string> $context
      *
      * @return array{amount: string, currency: Currency}
      */
-    public function normalize($object, string $format = null, array $context = []): array
+    public function normalize($data, string|null $format = null, array $context = []): array
     {
         return [
-            'amount' => $object->getAmount(),
-            'currency' => $object->getCurrency(),
+            'amount' => $data->getAmount(),
+            'currency' => $data->getCurrency(),
         ];
     }
 
     /**
      * @param array<string, string> $context
      */
-    public function supportsNormalization($data, string $format = null, array $context = []): bool
+    public function supportsNormalization($data, string|null $format = null, array $context = []): bool
     {
         return $data instanceof Money;
     }
@@ -43,7 +43,7 @@ class MoneyNormalizer implements NormalizerInterface, DenormalizerInterface
      * @param array{amount: numeric-string, currency: non-empty-string} $data
      * @param array<string, string> $context
      */
-    public function denormalize($data, string $type, string $format = null, array $context = []): Money
+    public function denormalize($data, string $type, string|null $format = null, array $context = []): Money
     {
         return new Money($data['amount'], new Currency($data['currency']));
     }
@@ -51,7 +51,7 @@ class MoneyNormalizer implements NormalizerInterface, DenormalizerInterface
     /**
      * @param array<string, string> $context
      */
-    public function supportsDenormalization($data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization($data, string $type, string|null $format = null, array $context = []): bool
     {
         if ($type !== Money::class) {
             return false;
@@ -63,7 +63,7 @@ class MoneyNormalizer implements NormalizerInterface, DenormalizerInterface
     /**
      * @return array<string, bool>
      */
-    public function getSupportedTypes(?string $format): array
+    public function getSupportedTypes(string|null $format): array
     {
         return [
             Money::class => true,

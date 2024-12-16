@@ -28,18 +28,18 @@ class MoneyAsDecimalNormalizer implements NormalizerInterface
     }
 
     /**
-     * @param Money $object
+     * @param Money $data
      * @param array<string, string> $context
      */
-    public function normalize($object, string $format = null, array $context = []): string
+    public function normalize($data, string|null $format = null, array $context = []): string
     {
-        return $this->moneyFormatter->format($object);
+        return $this->moneyFormatter->format($data);
     }
 
     /**
      * @param array<string, string> $context
      */
-    public function supportsNormalization($data, string $format = null, array $context = []): bool
+    public function supportsNormalization($data, string|null $format = null, array $context = []): bool
     {
         return $data instanceof Money;
     }
@@ -47,7 +47,7 @@ class MoneyAsDecimalNormalizer implements NormalizerInterface
     /**
      * @return array<string, bool>
      */
-    public function getSupportedTypes(?string $format): array
+    public function getSupportedTypes(string|null $format): array
     {
         return [
             Money::class => true,
