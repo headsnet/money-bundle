@@ -41,6 +41,7 @@
   },
   "scripts": {
     "cs": "vendor/bin/ecs check --ansi --config=ecs.php",
-    "cs-fix": "vendor/bin/ecs check --ansi --config=ecs.php --fix"
+    "cs-fix": "vendor/bin/ecs check --ansi --config=ecs.php --fix",
+    "static": "vendor/bin/phpstan analyze --ansi"
   }
 }
